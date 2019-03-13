@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ProductData {
 
-    private String productId;
+    private String Id;
 
     private String name;
 
@@ -15,7 +15,7 @@ public class ProductData {
     private Money price;
 
     public ProductData(String productId, String name, Date snapshotDate, String type, Money price) {
-        this.productId = productId;
+        this.Id = productId;
         this.price = price;
         this.name = name;
         this.snapshotDate = snapshotDate;
@@ -29,7 +29,7 @@ public class ProductData {
         int result = 1;
         result = prime * result + (name == null ? 0 : name.hashCode());
         result = prime * result + (price == null ? 0 : price.hashCode());
-        result = prime * result + (productId == null ? 0 : productId.hashCode());
+        result = prime * result + (Id == null ? 0 : Id.hashCode());
         result = prime * result + (snapshotDate == null ? 0 : snapshotDate.hashCode());
         result = prime * result + (type == null ? 0 : type.hashCode());
         return result;
@@ -61,11 +61,11 @@ public class ProductData {
         } else if (!price.equals(other.price)) {
             return false;
         }
-        if (productId == null) {
-            if (other.productId != null) {
+        if (Id == null) {
+            if (other.Id != null) {
                 return false;
             }
-        } else if (!productId.equals(other.productId)) {
+        } else if (!Id.equals(other.Id)) {
             return false;
         }
         if (snapshotDate == null) {
@@ -93,12 +93,12 @@ public class ProductData {
         this.price = money;
     }
 
-    public String getProductId() {
-        return productId;
+    public String getId() {
+        return Id;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setId(String productId) {
+        this.Id = productId;
     }
 
     public Money getPrice() {

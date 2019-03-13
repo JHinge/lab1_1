@@ -13,8 +13,6 @@
 package pl.com.bottega.ecommerce.sales.domain.offer;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.Objects;
 
 public class OfferItem {
 
@@ -86,7 +84,8 @@ public class OfferItem {
      *
      * @param item
      *
-     * @param delta acceptable percentage difference
+     * @param delta
+     *            acceptable percentage difference
      *
      * @return
      */
@@ -95,25 +94,28 @@ public class OfferItem {
             if (other.product.getPrice() != null) {
                 return false;
             }
-        } else if (!productPrice.equals(other.productPrice)) {
+        } else if (!product.getPrice()
+                           .equals(other.product.getPrice())) {
             return false;
         }
-        if (productName == null) {
-            if (other.productName != null) {
+        if (product.getName() == null) {
+            if (other.product.getName() != null) {
                 return false;
             }
-        } else if (!productName.equals(other.productName)) {
+        } else if (!product.getName()
+                           .equals(other.product.getName())) {
             return false;
         }
 
-        if (productId == null) {
-            if (other.productId != null) {
+        if (product.getId() == null) {
+            if (other.product.getId() != null) {
                 return false;
             }
-        } else if (!productId.equals(other.productId)) {
+        } else if (!product.getId()
+                           .equals(other.product.getId())) {
             return false;
         }
-        if (productType != other.productType) {
+        if (product.getType() != other.product.getType()) {
             return false;
         }
 
@@ -123,17 +125,18 @@ public class OfferItem {
 
         BigDecimal max;
         BigDecimal min;
-        if (totalCost.compareTo(other.totalCost) > 0) {
-            max = totalCost;
-            min = other.totalCost;
+        if (totalCost.getValue()
+                     .compareTo(other.totalCost.getValue()) > 0) {
+            max = totalCost.getValue();
+            min = other.totalCost.getValue();
         } else {
-            max = other.totalCost;
-            min = totalCost;
+            max = other.totalCost.getValue();
+            min = totalCost.getValue();
         }
 
         BigDecimal difference = max.subtract(min);
         BigDecimal acceptableDelta = max.multiply(BigDecimal.valueOf(delta / 100));
 
         return acceptableDelta.compareTo(difference) > 0;
-    }*/
+    }
 }
