@@ -31,6 +31,8 @@ public class OfferItem {
 
     private int quantity;
 
+    // private Money money;
+
     private BigDecimal totalCost;
 
     private String currency;
