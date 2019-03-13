@@ -24,30 +24,59 @@ public class OfferItem {
 
     // private Money money;
 
-    private Money money;
+    private Money totalCost;
 
     // discount
     private Discount discount;
 
     private int quantity;
 
-    public OfferItem(String productId, BigDecimal productPrice, String productName, Date productSnapshotDate, String productType,
-            int quantity) {
-        this(productId, productPrice, productName, productSnapshotDate, productType, quantity, null, null);
+    public OfferItem(ProductData product, int quantity) {
+        this(product, quantity, null);
     }
 
-    public OfferItem(Product product, int quantity, Discount discount) {
+    public OfferItem(ProductData product, int quantity, Discount discount) {
         this.product = product;
         this.quantity = quantity;
         this.discount = discount;
-
-        BigDecimal discountValue = new BigDecimal(0);
+        this.totalCost.setValue(product.getPrice()
+                                       .getValue()
+                                       .multiply(new BigDecimal(quantity)));
         if (discount != null) {
-            discountValue = discountValue.subtract(discount);
+            totalCost.setValue(totalCost.getValue()
+                                        .subtract(discount.getValue()
+                                                          .getValue()));
         }
 
-        this.totalCost = productPrice.multiply(new BigDecimal(quantity))
-                                     .subtract(discountValue);
+        // subtract(discount.getDiscount());
+    }
+
+    public ProductData getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductData product) {
+        this.product = product;
+    }
+
+    public Money getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(Money totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public Discount getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public int getQuantity() {

@@ -4,20 +4,20 @@ import java.math.BigDecimal;
 
 public class Money {
 
-    private BigDecimal totalCost;
+    private BigDecimal value;
     private String currency;
 
     public Money(BigDecimal totalCost, String currency) {
-        this.totalCost = totalCost;
+        this.value = totalCost;
         this.currency = currency;
     }
 
-    public BigDecimal getTotalCost() {
-        return totalCost;
+    public BigDecimal getValue() {
+        return value;
     }
 
-    public void setTotalCost(BigDecimal totalCost) {
-        this.totalCost = totalCost;
+    public void setValue(BigDecimal value) {
+        this.value = value;
     }
 
     public String getCurrency() {
